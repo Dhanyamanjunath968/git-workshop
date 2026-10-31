@@ -1,0 +1,568 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tata Auto Journal | Latest Tata Cars</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f5f6f8;
+    color: #20242b;
+}
+
+header {
+    background: #101b2c;
+    color: white;
+    padding: 18px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    color: #ff6b35;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 25px;
+    font-size: 14px;
+}
+
+nav a:hover {
+    color: #ff7545;
+}
+
+.hero {
+    min-height: 520px;
+    background:
+    linear-gradient(90deg, rgba(8,17,32,.95), rgba(8,17,32,.3)),
+    url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1800&q=85');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    padding: 7%;
+    color: white;
+}
+
+.hero-content {
+    max-width: 600px;
+}
+
+.tag {
+    display: inline-block;
+    background: #ff6b35;
+    padding: 8px 15px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-size: 52px;
+    line-height: 1.15;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 17px;
+    color: #e2e5eb;
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+.btn {
+    display: inline-block;
+    background: #ff6b35;
+    color: white;
+    padding: 13px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background: #e64d20;
+}
+
+section {
+    padding: 65px 7%;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-title h2 {
+    font-size: 32px;
+    color: #101b2c;
+    margin-bottom: 10px;
+}
+
+.section-title p {
+    color: #777;
+}
+
+.filter-bar {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.filter-bar button {
+    padding: 9px 20px;
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.filter-bar button.active,
+.filter-bar button:hover {
+    background: #ff6b35;
+    color: white;
+    border-color: #ff6b35;
+}
+
+.search {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto 30px;
+    padding: 13px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+.car-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,.07);
+    transition: .3s;
+}
+
+.card:hover {
+    transform: translateY(-7px);
+}
+
+.card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 22px;
+}
+
+.category {
+    color: #ff6b35;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.card h3 {
+    font-size: 21px;
+    margin: 12px 0;
+}
+
+.card p {
+    color: #777;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+.read-more {
+    display: inline-block;
+    margin-top: 18px;
+    color: #ff6b35;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.feature {
+    background: #101b2c;
+    color: white;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.feature img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.feature h2 {
+    font-size: 36px;
+    margin: 15px 0;
+}
+
+.feature p {
+    color: #ccd2dc;
+    line-height: 1.8;
+    margin-bottom: 25px;
+}
+
+.newsletter {
+    background: #ff6b35;
+    text-align: center;
+    color: white;
+}
+
+.newsletter h2 {
+    font-size: 30px;
+    margin-bottom: 12px;
+}
+
+.newsletter p {
+    margin-bottom: 22px;
+}
+
+.newsletter input {
+    padding: 14px;
+    width: 270px;
+    border: none;
+    border-radius: 4px;
+}
+
+.newsletter button {
+    padding: 14px 20px;
+    border: none;
+    background: #101b2c;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+footer {
+    background: #101b2c;
+    color: white;
+    padding: 40px 7%;
+    text-align: center;
+}
+
+footer p {
+    color: #aaa;
+    margin-top: 12px;
+    font-size: 13px;
+}
+
+@media(max-width: 900px) {
+    .car-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero h1 {
+        font-size: 40px;
+    }
+}
+
+@media(max-width: 600px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav a {
+        margin: 0 7px;
+        font-size: 12px;
+    }
+
+    .hero {
+        min-height: 450px;
+    }
+
+    .hero h1 {
+        font-size: 34px;
+    }
+
+    .car-grid,
+    .feature {
+        grid-template-columns: 1fr;
+    }
+
+    section {
+        padding: 45px 5%;
+    }
+
+    .newsletter input {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">TATA <span>AUTO JOURNAL</span></div>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#cars">Latest Cars</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#news">News</a>
+    </nav>
+</header>
+
+<!-- HERO SECTION -->
+<div class="hero" id="home">
+    <div class="hero-content">
+        <span class="tag">AUTOMOBILE BLOG 2026</span>
+        <h1>Explore The Future Of Indian Automobiles</h1>
+        <p>
+            Discover the latest Tata cars, exciting electric vehicles,
+            automobile technology, expert reviews and upcoming launches.
+        </p>
+        <a href="#cars" class="btn">Explore Latest Cars →</a>
+    </div>
+</div>
+
+<!-- LATEST CARS -->
+<section id="cars">
+    <div class="section-title">
+        <h2>Latest Tata Cars</h2>
+        <p>Explore the latest models from Tata Motors India.</p>
+    </div>
+
+    <input type="text" class="search"
+    id="searchInput" placeholder="Search your favourite Tata car...">
+
+    <div class="filter-bar">
+        <button class="active" onclick="filterCars('all',this)">All Cars</button>
+        <button onclick="filterCars('suv',this)">SUV</button>
+        <button onclick="filterCars('ev',this)">Electric</button>
+        <button onclick="filterCars('hatchback',this)">Hatchback</button>
+        <button onclick="filterCars('sedan',this)">Sedan</button>
+    </div>
+
+    <div class="car-grid" id="carGrid">
+
+        <article class="card" data-type="suv">
+            <img src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=800&q=80" alt="SUV">
+            <div class="card-content">
+                <span class="category">SUV • New Launch</span>
+                <h3>Tata Sierra</h3>
+                <p>The iconic Sierra returns with a modern design,
+                premium interiors and next-generation technology.</p>
+                <a href="https://www.tatamotors.com/" class="read-more">Explore Model →</a>
+            </div>
+        </article>
+
+        <article class="card" data-type="sedan">
+            <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80" alt="Car">
+            <div class="card-content">
+                <span class="category">Sedan • New Launch</span>
+                <h3>Tata Aeris</h3>
+                <p>A new sedan offering petrol and iCNG powertrain
+                options with a focus on comfort and technology.</p>
+                <a href="https://www.tatamotors.com/" class="read-more">Explore Model →</a>
+            </div>
+        </article>
+
+        <article class="card" data-type="suv">
+            <img src="https://images.unsplash.com/photo-151 SUV" alt="Tata Nexon">
+            <div class="card-content">
+                <span class="category">SUV • Popular Choice</span>
+                <h3>Tata Nexon</h3>
+                <p>A versatile compact SUV featuring modern styling,
+                multiple powertrain options and advanced features.</p>
+                <a href="https://www.tatamotors.com/" class="read-more">Explore Model →</a>
+            </div>
+        </article>
+
+        <article class="card" data-type="ev">
+            <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&w=800&q=80" alt="Electric car">
+            <div class="card-content">
+                <span class="category">Electric SUV</span>
+                <h3>Tata Harrier.ev</h3>
+                <p>Explore Tata's electric SUV with an exciting
+                combination of electric performance and technology.</p>
+                <a href="https://ev.tata.cars/" class="read-more">Explore Model →</a>
+            </div>
+        </article>
+
+        <article class="card" data-type="suv">
+            <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80" alt="SUV">
+            <div class="card-content">
+                <span class="category">SUV • Premium</span>
+                <h3>Tata Curvv</h3>
+                <p>A stylish SUV coupe combining bold design,
+                practicality and modern driving technology.</p>
+                <a href="https://www.tatamotors.com/" class="read-more">Explore Model →</a>
+            </div>
+        </article>
+
+        <article class="card" data-type="hatchback">
+            <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80" alt="Car">
+            <div class="card-content">
+                <span class="category">Hatchback</span>
+                <h3>Tata Tiago</h3>
+                <p>A practical city car with petrol, iCNG and electric
+                options in Tata's wider Tiago family.</p>
+                <a href="https://www.tatamotors.com/" class="read-more">Explore Model →</a>
+            </div>
+        </article>
+
+    </div>
+</section>
+
+<!-- FEATURED ARTICLE -->
+<section class="feature" id="reviews">
+    <div>
+        <span class="tag">FEATURED REVIEW</span>
+        <h2>The Electric Revolution: Tata.ev</h2>
+        <p>
+            Tata Motors is expanding its electric vehicle portfolio.
+            Models such as the Nexon.ev, Punch.ev, Curvv.ev,
+            Sierra.ev and Harrier.ev are bringing more choices
+            to India's growing EV market.
+        </p>
+        <a href="https://ev.tata.cars/" class="btn">Discover Tata EVs</a>
+    </div>
+
+    <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&w=1000&q=85" alt="Electric vehicle">
+</section>
+
+<!-- NEWS -->
+<section id="news">
+    <div class="section-title">
+        <h2>Automobile News & Updates</h2>
+        <p>What's happening in the Tata automotive world?</p>
+    </div>
+
+    <div class="car-grid">
+
+        <article class="card">
+            <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=800&q=80" alt="Car">
+            <div class="card-content">
+                <span class="category">Latest News</span>
+                <h3>Tata's New Generation Cars</h3>
+                <p>Discover the changing design language and
+                technology across Tata's latest passenger cars.</p>
+                <a href="https://cars.tatamotors.com/" class="read-more">Read More →</a>
+            </div>
+        </article>
+
+        <article class="card">
+            <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&w=800&q=80" alt="EV">
+            <div class="card-content">
+                <span class="category">EV Technology</span>
+                <h3>The Future of Electric Mobility</h3>
+                <p>Learn how electric vehicles are changing
+                the future of transportation in India.</p>
+                <a href="https://ev.tata.cars/" class="read-more">Read More →</a>
+            </div>
+        </article>
+
+        <article class="card">
+            <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80" alt="Car">
+            <div class="card-content">
+                <span class="category">Car Reviews</span>
+                <h3>Choosing Your Next Tata Car</h3>
+                <p>Explore important factors like budget,
+                features, fuel options and everyday usability.</p>
+                <a href="#cars" class="read-more">Read More →</a>
+            </div>
+        </article>
+
+    </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+    <h2>Stay Updated With Auto News!</h2>
+    <p>Subscribe to receive the latest automobile updates.</p>
+
+    <form id="subscribeForm">
+        <input type="email" id="email"
+        placeholder="Enter your email address" required>
+        <button type="submit">Subscribe</button>
+    </form>
+    <p id="message"></p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <h2>TATA <span style="color:#ff6b35">AUTO JOURNAL</span></h2>
+    <p>Your daily destination for automobile news, reviews and updates.</p>
+    <p>Home | Latest Cars | Reviews | News</p>
+    <p>© 2026 Tata Auto Journal. Independent sample blog website.</p>
+    <p>Not affiliated with or endorsed by Tata Motors.</p>
+</footer>
+
+<script>
+function filterCars(type, button) {
+    let cards = document.querySelectorAll('#carGrid .card');
+
+    document.querySelectorAll('.filter-bar button')
+    .forEach(btn => btn.classList.remove('active'));
+
+    button.classList.add('active');
+
+    cards.forEach(card => {
+        if (type === 'all' || card.dataset.type === type) {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
+
+document.getElementById('searchInput').addEventListener('input', function() {
+    let value = this.value.toLowerCase();
+
+    document.querySelectorAll('#carGrid .card').forEach(card => {
+        let name = card.innerText.toLowerCase();
+        card.style.display = name.includes(value) ? 'block' : 'none';
+    });
+});
+
+document.getElementById('subscribeForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    document.getElementById('message').innerText =
+    'Thank you for subscribing!';
+
+    this.reset();
+});
+</script>
+
+</body>
+</html>
